@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{xepersian}
+\settextfont{Segoe UI} % یا Tahoma یا Arial Unicode MS
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  stringstyle=\color{red},
+  commentstyle=\color{gray},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  frame=single
+}
+
+
+\begin{document}
+دوره آموزشی برنامه متمتیکا
+\par
+دوره سایت فرادرس
+\par
+جلسه اول
+\par
+حذف متغیر در برنامه (هر متغیری قبل از این دستور پاک می‌شود.)
+\par
+\begin{LTR}
+\begin{lstlisting}
+Clear["Global`*"]
+\end{lstlisting}
+\end{LTR}
+\par
+تنها متغیر a حذف می‌شود.
+\begin{LTR}
+\begin{lstlisting}
+Clear[a]
+\end{lstlisting}
+\end{LTR}
+\par
+غیرفعال کردن یک دستور:
+\par
+\LR{Uncomment Section} ➜ بخش مورد نظر
+
+\end{document}
