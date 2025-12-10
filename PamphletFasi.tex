@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage{xepersian}
-\settextfont{Segoe UI} % یا Tahoma یا Arial Unicode MS
+\settextfont[Scale=1.0]{Vazirmatn}         % متن فارسی
+\setlatintextfont[Scale=1.0]{Times New Roman} % متن انگلیسی
+\setdigitfont{Vazirmatn}   
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage[a4paper, margin=2.5cm]{geometry}
@@ -15,8 +17,21 @@
   frame=single
 }
 
-
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{eso-pic}
 \begin{document}
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture,overlay]
+    % ضخامت خط کادر را تنظیم کن
+    \draw[line width=1pt]
+      % فاصله کادر از لبه برگ (قابل تغییر)
+      ($(current page.north west) + (1.2cm,-1.2cm)$)
+        rectangle
+      ($(current page.south east) + (-1.2cm,1.2cm)$);
+  \end{tikzpicture}
+}
+
 دوره آموزشی برنامه متمتیکا
 \par
 دوره سایت فرادرس
@@ -41,5 +56,471 @@ Clear[a]
 غیرفعال کردن یک دستور:
 \par
 \LR{Uncomment Section} ➜ بخش مورد نظر
+\par
+کلید میانبر :‌ / + Alt
+\par
+نشان دادن هر متغیری (چه مقدار دهی شده و چه مقدار دهی نشده)
+\par
+\begin{LTR}
+\begin{lstlisting}
+Clear["Global`*"]
+Clear["Name`*"]
+\end{lstlisting}
+\end{LTR}
+\par
+* همیشه باید در اول هر برنامه از دو کد Remove  و Clear استفاده کنیم تا در محاسبات مشکلی پیش نیاید.
+\par
+* در متمتیکا حرف اول همه دستورها باید بزرگ شود.
+\par
+* روش اجرا دستورهای در یک سل :‌ Enter + Shift
+\par
+اجرای دستورهای همه سل‌ها به صورت یکجا:
+$Evaluation \rightarrow Evaluate Notebook$
+\par
+\par
+دستور برای مقداردهی یک متغیر:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Variable_name = Value
+\end{lstlisting}
+\end{LTR}
+\par
+برای مثال در کد زیر مقدار 2 را درون متغیری با نام a قرار می‌دهیم:
+\begin{LTR}
+\begin{lstlisting}
+a = 2
+\end{lstlisting}
+\end{LTR}
+\par
+مشکلی که این نوع مقداردهی دارد این است که بعد از اجرا سلولی که این کد درون آن است، این مقدار درخروجی چاپ می‌شود. برای اینکه هم مقدار موردنظر در متغیر موردنظر ذخیره شود و هم اینکه در خروحی نمایش داده نشود. دو روش وجود دارد. روش اول:
+\par
+\begin{LTR}
+\begin{lstlisting}
+a = 2;
+\end{lstlisting}
+\end{LTR}
+\par
+روش دیگری که موجود است:
+\begin{LTR}
+\begin{lstlisting}
+a := 2
+\end{lstlisting}
+\end{LTR}
+\par
+تقاوت این دو دستور باهم این است که در روش اول مقدار حساب و ذخیره می‌شوند . ولی در روش دوم مقدار حساب نمی‌شود تا زمانی که از آن در جایی استفاده شود
+\par
+روش متوقف کردن برنامه در حال اجرا:
+\par
+\LR{Evaluation} ⇒ \LR{Quit kernel} ⇒ \LR{Local}
+\par
+جواب سوال پرسیده شده: Quit
+\par
+* هر دستور در متمتیکا باید در براکت ([ ]) نوشته شود:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Sin[x] , Clear[c]
+\end{lstlisting}
+\end{LTR}
+\par
+دستورهای پایه ریاضی
+\par
+برای این بخش دو متغیر از قبل تعریف می‌کنیم:
 
+\par
+\begin{LTR}
+\begin{lstlisting}
+a = 5
+b = 8
+\end{lstlisting}
+\end{LTR}
+\par
+دستور جمع:
+\par
+\begin{LTR}
+\begin{lstlisting}
+a + b        Out : 13
+\end{lstlisting}
+\end{LTR}
+\par
+دستور تفریق:
+\par
+\begin{LTR}
+\begin{lstlisting}
+a - b        Out : -3
+\end{lstlisting}
+\end{LTR}
+\par
+دستور ضرب:
+\par
+\begin{LTR}
+\begin{lstlisting}
+a * b        Out : 40
+\end{lstlisting}
+\end{LTR}
+\par
+دستور تقسیم (روش اول):
+\par
+\begin{LTR}
+\begin{lstlisting}
+a / b        Out : 5 / 8
+\end{lstlisting}
+\end{LTR}
+\par
+دستور تقسیم (روش دوم):
+\par
+\begin{LTR}
+\begin{lstlisting}
+a/b        Out : 5 / 8
+\end{lstlisting}
+\end{LTR}
+\par
+نحوه خروجی گرفتن با دقت موردنظر:
+\begin{LTR}
+\begin{lstlisting}
+N[expression]                         e.g: N[1/3]        Out: 0.333
+N[expression , accuracy]       e.g: N[1/3 , 10]        Out: 0.3333333333
+\end{lstlisting}
+\end{LTR}
+\par
+\par
+برای نوشتن این روش پس از نوشتن صورت تقسیم (در این مثال a) / + Ctrl را می‌زنیم. 
+\par
+روش تایپ کردن فرمول‌های خاص:
+\par
+$Palettes \rightarrow Basic Math Assistant$
+\par
+استفاده از حروف یونانی و اسمبل‌ها در این قسمت نیر موجود است. 
+\par
+هز گزینه کلید میانبر مخصوص خود را دارد. برای آشنایی با کلید میانبر هر گزینه، روی گزینه کمی نگه دارید.
+\par
+* خطای 1042 : ایجاد اشکال در دستور وارد شده، مثال:
+\par
+\begin{LTR}
+\begin{lstlisting}
+W = W + 1   ,  W = W1 + 1
+\end{lstlisting}
+\end{LTR}
+\par
+روش دیگر برای نوشتن این عبارت: در این حالت کنترلی در تعداد اعشار نداریم.
+\par
+\begin{LTR}
+\begin{lstlisting}
+1 / 3 // N
+\end{lstlisting}
+\end{LTR}
+\par
+\par
+\par
+\par
+جلسه دوم : معرفی توابع
+\par
+تابع رادیکال:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Sqrt[4]                Out: 2
+Sqrt[x**2]             Out: {\Sqrt[x^2]}
+\end{lstlisting}
+\end{LTR}
+\par
+تابع ساده سازی (Simplify) :
+\par
+\begin{LTR}
+\begin{lstlisting}
+Simplify[%, x > 0]                         Out: +x
+Simplify[%, x < 0]                         Out: -x
+\end{lstlisting}
+\end{LTR}
+\par
+در این مثال نماینده آخرین خروجی است.
+\par
+تابع نمایی:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Exp[x]                            Out: e**x      e = 2.7
+Exp[2]                            Out: e**2
+Exp[2] // N                    Out: 7.38906
+\end{lstlisting}
+\end{LTR}
+\par
+تابع جزء صحیح:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Floor[2.3]             Out: 2
+\end{lstlisting}
+\end{LTR}
+\par
+تابع قدرمطلق:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Abs[-2]                         Out: 2
+Abs[-x]                         Out: Abs[x]
+\end{lstlisting}
+\end{LTR}
+\par
+* در مثال دوم این کد، خروجی از تابع بیرون در نمی‌آید چون x می‌تواند منفی و چیزهای دیگر باشد.
+\par
+تابع علامت:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Sign[{-2, 0, 3}]                         Out: {-1, 0, 1}
+\end{lstlisting}
+\end{LTR}
+\par
+تابع فاکتوریل (روش اول) :
+\par
+\begin{LTR}
+\begin{lstlisting}
+x = 5
+Facorial[x]                       Out: 120
+\end{lstlisting}
+\end{LTR}
+\par
+تابع فاکتوریل (روش دوم) :
+\par
+\begin{LTR}
+\begin{lstlisting}
+x!                Out: 120
+\end{lstlisting}
+\end{LTR}
+\par
+تابع لگاریتم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Log[x]                Out: Log[x]
+\end{lstlisting}
+\end{LTR}
+\par
+زمانی که برای الگوریتم پایه تغریف نکنیم، نرم افزار به صورت خودکار پایه را عدد نپر ( ln x یا E ) قرار می‌دهد.
+\par
+\begin{LTR}
+\begin{lstlisting}
+Log[E]               Out: 1
+\end{lstlisting}
+\end{LTR}
+\par
+تغریف پایه الگوریتم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Log[a , x]                  a is The base of the logarithm
+Log[10 , 1000]                Out: 3
+\end{lstlisting}
+\end{LTR}
+\par
+توابع مثلثاتی:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Sin[x]                e,g: Sin[Pi/3]                Out: sqrt[3] / 2
+Cos[x]
+Tan[x]
+Cot[x]
+ArcSin[x]
+ArcTan[x]
+\end{lstlisting}
+\end{LTR}
+\par
+به صورت دیفالت مقدار محاسبه این توابع به صورت رادیان است، اگر بخواهیم نرم افزار حاص درجه موردنظر را حساب کند، این گونه عمل می‌کنیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Sin[30 Degree]                Out: sqrt[3] / 2
+Sin[30 Degree] // N           Out: 0.5
+\end{lstlisting}
+\end{LTR}
+\par
+\par
+توابع هیپربولیک
+\par
+\begin{LTR}
+\begin{lstlisting}
+Sinh[x]
+Cosh[x]
+Coth[x]
+\end{lstlisting}
+\end{LTR}
+\par
+تابع تولید اعداد تصادفی
+\par
+برای اعداد حقیقی:
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+RandomReal[{-2, 2}, 5]     Out: {1.31496, 0.0146972, -1.486, -1.93584, 0.638742}
+RandomReal[{-2, 2}, {2, 5}] Out:{{1.86401, -1.47587, 0.0531725, 1.73636, 0.243321}, 
+{1.50354, 0.924516, 1.60522, 0.870081, -1.22427}}
+\end{lstlisting}
+\end{LTR}
+\par
+در مثال اول پنج عدد تصادفی در بازه {2 ,  2-} انتخاب می‌شوند.
+\par
+در مثال دوم دو دسته پنج تایی عدد تصادفی در بازه {2 ,  2-} انتخاب می‌شوند.
+\par
+برای اعداد صحیح:
+\par
+\begin{LTR}
+\begin{lstlisting}
+RandomInteger[{-2, 2}, 5]      Out: {-2, 0, 1, 2, -2}
+\end{lstlisting}
+\end{LTR}
+\par
+پنج عدد صحیح تصادفی در بازه {2 ,  2-} انتخاب می‌شوند.
+\par
+تبدیل عدد به عامل های اول:
+\par
+\begin{LTR}
+\begin{lstlisting}
+FactorInteger[10]     Out: {{2, 1}, {5, 1}}      10 = 2^1 * 5^1
+\end{lstlisting}
+\end{LTR}
+\par
+به توان رساندن:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Superscript[2, 3]        Out: Superscript[2,3]
+Superscript @@ {2, 3}     Out: Superscript[2,3]
+Superscript @@@ {{2, 3}, {6, 5}}        Out: {Superscript[2,3], Superscript[6,5]}
+Superscript @@ {{2, 3}, {4, 5}}         Out: Superscript[{2, 3},{4, 5}]
+\end{lstlisting}
+\end{LTR}
+\par
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+CenterDot[x, y]           Out: x\[CenterDot]y
+CenterDot @@ (Superscript @@@ (FactorInteger[15]))  Out: Superscript[3,1]\[CenterDot]Superscript[5,1]
+\end{lstlisting}
+\end{LTR}
+\par
+
+کوچک‌ترین مضرب مشترک
+\par
+\begin{LTR}
+\begin{lstlisting}
+LCM[5, 6]
+\end{lstlisting}
+\end{LTR}
+\par
+بزرگترین تقسیم الیه مشترک
+\par
+\begin{LTR}
+\begin{lstlisting}
+GCD[15, 9]
+\end{lstlisting}
+\end{LTR}
+\par
+باقی‌مانده
+\par
+\begin{LTR}
+\begin{lstlisting}
+Mod[15 , 2]
+\end{lstlisting}
+\end{LTR}
+\par
+خارج قسمت
+\par
+\begin{LTR}
+\begin{lstlisting}
+Quotient[15, 3]
+\end{lstlisting}
+\end{LTR}
+\par
+ترکیب
+\par
+\begin{LTR}
+\begin{lstlisting}
+Binomial[15, 3]
+\end{lstlisting}
+\end{LTR}
+\par
+دلتار دیراک
+\par
+\begin{LTR}
+\begin{lstlisting}
+DiracDelta[x]
+DiracDelta[x] // TraditionalForm   Out: \[Delta](x)
+\end{lstlisting}
+\end{LTR}
+\par
+دلتا کراینیکر
+\par
+\begin{LTR}
+\begin{lstlisting}
+DiracDelta[m, n] // TraditionalForm
+\end{lstlisting}
+\end{LTR}
+\par
+اعداد مختلط:
+\par
+\begin{LTR}
+\begin{lstlisting}
+z = x + I y    Out: x + I y
+Re[z]          Out: -Im[y] + Re[x]
+\end{lstlisting}
+\end{LTR}
+\par
+برای تعریف کردن قسمت موهومی و واقعی اعداد مختلط:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Refine[Re[z], Element[{x, y}, Reals]]        Out: x               // Real Part
+Refine[Im[z], Element[{x, y}, Reals]]        Out: y              // Imaginary Part
+\end{lstlisting}
+\end{LTR}
+\par
+مزدوج گیری (مختلط) :
+\par
+\begin{LTR}
+\begin{lstlisting}
+Conjugate[z]        Out: Conjugate[x] - I Conjugate[y]
+\end{lstlisting}
+\end{LTR}
+\par
+ریفاین کردن
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+Refine[Conjugate[z], Element[{x, y}, Reals]]        Out: x - I y
+\end{lstlisting}
+\end{LTR}
+\par
+تعریف تابع دلخواه:
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+F[x_] = x^2 + 1   Out: 1 + x^2
+F[3]              Out: 10
+Map[F, {2, 3}]    Out: {5, 10}
+F /@ {2, 3}       Out: {5, 10}
+\end{lstlisting}
+\end{LTR}
+\par
+برای تعریف توابع چند متغیره:
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+G[x_, y_] = x + y + 2     Out: 2 + x + y
+G[{2, 3}, {5, 6}]         Out: {9, 11}
+\end{lstlisting}
+\end{LTR}
+\par
+\par
+\par
+\par
+\par
+جلسه سوم : محسابات جبری و مثلثاتی، سری‌ها
 \end{document}
