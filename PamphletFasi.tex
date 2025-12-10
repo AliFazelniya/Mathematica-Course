@@ -662,7 +662,7 @@ Sum[Sin[i x], {i, 1, 10, 2}] Out: Sin[x] + Sin[3 x] + Sin[5 x] + Sin[7 x] + Sin[
 \par
 روش دیگر: با استفاده از کلید میان ESC + Sum + ESC می‌توان این نماد را رسم کرد.
 \begin{center}
-\includegraphics[width=0.7\textwidth]{Sum.png}
+\includegraphics[width=1\textwidth]{Sum.png}
 \end{center}
 \par
 خروجی کدهای تصویر بالا:
@@ -687,7 +687,7 @@ Product[Sin[i x], {i, 1 , 10, 2}] Out: Sin[x] Sin[3 x] Sin[5 x] Sin[7 x] Sin[9 x
 \par
 روش دیگر: با استفاده از کلید میان ESC + Prod + ESC می‌توان این نماد را رسم کرد.
 \begin{center}
-\includegraphics[width=0.7\textwidth]{Dot.png}
+\includegraphics[width=1\textwidth]{Dot.png}
 \end{center}
 \par
 خروجی کد تصویر بالا:
@@ -699,4 +699,53 @@ Out: 120
 \end{LTR}
 \par
 جلسه چهارم : حد، مشتق و انتگرال
+\par
+بخش اول - محاسبه حد
+\par
+\begin{LTR}
+\begin{lstlisting}
+Limit[f[x], x -> x0]
+Limit[f[x], x -> x0] // TraditionalForm
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی کد بالا به شکل زیر می‌باشد:
+\begin{center}
+\includegraphics[width=1\textwidth]{limit1.png}
+\end{center}
+\par
+مثالی دیگر:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Limit[Sin[x]/x, x -> 0]    Out: 1
+\end{lstlisting}
+\end{LTR}
+\par
+نکته: اگر یک عبارت حد چپ و راست برابر نداشته باشد، حد ندارد و در نرم‌افزار پیامی طبق این مفهوم می‌آید.
+\par
+\begin{LTR}
+\begin{lstlisting}
+Limit[1/x, x -> 0]         Out: Indeterminate
+\end{lstlisting}
+\end{LTR}
+\par
+همچنین می‌توانیم حد چپ و راست را به صورت جداگانه برای یک عبارت حساب کنیم. به مثال زیر توجه کنید.
+\par
+حد چپ : از سمت مقادیر کمتر از صفر به سمت صفر
+\par
+\begin{LTR}
+\begin{lstlisting}
+Limit[1/x, x -> 0 , Direction -> 1]         Out: -Infinity
+\end{lstlisting}
+\end{LTR}
+\par
+حد چپ : از سمت مقادیر بیشتر از صفر به سمت صفر
+\par
+\begin{LTR}
+\begin{lstlisting}
+Limit[1/x, x -> 0, Direction -> -1]        Out: Infinity
+\end{lstlisting}
+\end{LTR}
+\par
 \end{document}
