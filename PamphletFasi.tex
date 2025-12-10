@@ -1,11 +1,12 @@
 \documentclass{article}
 \usepackage{xepersian}
-\settextfont[Scale=1.0]{Vazirmatn}         % متن فارسی
-\setlatintextfont[Scale=1.0]{Times New Roman} % متن انگلیسی
+\settextfont[Scale=1.0]{Vazirmatn}
+\setlatintextfont[Scale=1.0]{Times New Roman}
 \setdigitfont{Vazirmatn}   
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
 \lstset{
   basicstyle=\ttfamily\small,
   keywordstyle=\color{blue},
@@ -63,7 +64,6 @@ Clear[a]
 \par
 \begin{LTR}
 \begin{lstlisting}
-Clear["Global`*"]
 Clear["Name`*"]
 \end{lstlisting}
 \end{LTR}
@@ -523,4 +523,180 @@ G[{2, 3}, {5, 6}]         Out: {9, 11}
 \par
 \par
 جلسه سوم : محسابات جبری و مثلثاتی، سری‌ها
+بسط یک عبارت
+\par
+\begin{LTR}
+\begin{lstlisting}
+(x + 1)^3              Out: (1 + x)^3
+Expand[(x + 1)^3]      Out: 1 + 3 x + 3 x^2 + x^3
+(x + 1)^3 // Expand    Out: 1 + 3 x + 3 x^2 + x^3
+Expand[(a + b)^2*(x + 1)^2]    Out: a^2 + 2 a b + b^2 + 2 a^2 x + 4 a b x + 2 b^2 x 
++ a^2 x^2 +  2 a b x^2 + b^2 x^2
+\end{lstlisting}
+\end{LTR}
+\par
+همانطور که مشاهده می‌شود در مثال آخر کدهای بالا هر دو جمله بسط داده می‌شوند. گاهی نیاز است که تنها یکی از این جملات بسط داده شود. برای این کار:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Expand[(a + b)^2*(x + 1)^2, x]       Out: (a + b)^2 + 2 (a + b)^2 x + (a + b)^2 x^2
+\end{lstlisting}
+\end{LTR}
+\par
+همانطور که مشاهده می‌شوند فقط جمله‌ای که در آن x وجود دارد، بسط داده خواهد شد.
+\par
+فاکتورگیری
+\par
+\begin{LTR}
+\begin{lstlisting}
+Factor[x^4 + x^2 + x]     Out: x (1 + x + x^3)
+Factor[x^4 + x^2]         Out: x^2 (1 + x^2)
+\end{lstlisting}
+\end{LTR}
+\par
+به مثال زیر توجه کنید:
+\par
+\begin{LTR}
+\begin{lstlisting}
+y = x^4 + x^2 + x
+x = a + b
+Factor[y]      Out: (a + b) (1 + a + a^3 + b + 3 a^2 b + 3 a b^2 + b^3)
+\end{lstlisting}
+\end{LTR}
+\par
+همانطور که مشاهده می‌شود در این کد، از (a + b) فاکتور گرفته می‌شود.
+\par
+ساده کردن یک عبارت کسری
+\par
+\begin{LTR}
+\begin{lstlisting}
+Cancel[(x^2 - 1)/(x - 1)]     Out: 1 + x
+\end{lstlisting}
+\end{LTR}
+\par
+تجزیه کسر به کسرهای جزئی
+\par
+\begin{LTR}
+\begin{lstlisting}
+Apart[1/((1 + x)*(5 + x))]    Out: 1/(4 (1 + x)) - 1/(4 (5 + x))
+Expand[(1 + x)*(5 + x)]       Out: 5 + 6 x + x^2
+Apart[1/%]                    Out: 1/(4 (1 + x)) - 1/(4 (5 + x))
+\end{lstlisting}
+\end{LTR}
+\par
+بسط عبارات مثلثاتی و تبدیل آن‌ها به عبارت نهایی
+\par
+\begin{LTR}
+\begin{lstlisting}
+Cancel[Sin[2*x]/Sin[x]]                     Out: Csc[x] Sin[2 x]
+Cancel[Sin[2*x]/Sin[x], Trig  -> True]      Out: 2 Cos[x]
+\end{lstlisting}
+\end{LTR}
+\par
+ساده سازی عبارت‌های مثلثاتی
+\par
+\begin{LTR}
+\begin{lstlisting}
+TrigFactor[Cos[x + y] + Sin[x]*Sin[y]]               Out: Cos[x] Cos[y]
+\end{lstlisting}
+\end{LTR}
+\par
+بسط عبارت‌های مثلثاتی
+\par
+\begin{LTR}
+\begin{lstlisting}
+TrigExpand[Cos[x + y]]             Out: Cos[x] Cos[y] - Sin[x] Sin[y]
+TrigExpand[Sin[2*x]]               Out: 2 Cos[x] Sin[x]
+\end{lstlisting}
+\end{LTR}
+\par
+تبدیل عبارت‌های مثلثاتی درجه‌های بالاتر به عبارت خطی
+\par
+\begin{LTR}
+\begin{lstlisting}
+TrigReduce[2*(Cos[x])^2]           Out: 1 + Cos[2 x]
+TrigReduce[(Cos[x])^3]             Out: 1/4 (3 Cos[x] + Cos[3 x])
+\end{lstlisting}
+\end{LTR}
+\par
+تبدیل عبارت‌های مثلثاتی به نمایی و برعکس
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+TrigToExp[Cos[x]]             Out: E^(-I x)/2 + E^(I x)/2
+ExpToTrig[Exp[Ix]]            Out: Cosh[Ix] + Sinh[Ix]
+\end{lstlisting}
+\end{LTR}
+\par
+ساده سازی عبارت‌ها
+\par
+نکته: در نرم افزار متمتیکا در دو حالت زیر ضرب تعریف می‌شود:
+\par
+1) بین دو عبارت علامت ضرب " * " قرار گیرد.
+\par
+2) بین دو عبارت اسپیس گذاشته شود.
+\par
+\begin{LTR}
+\begin{lstlisting}
+Simplify[(x - 1) (x + 1) (x^2 + 1) + 1]            Out: x^4
+Simplify[(Sin[x])^2 + (Cos[x])^2]               Out: 1
+FullSimplify[Cosh[x] - Sinh[x]]               Out: E^-x
+\end{lstlisting}
+\end{LTR}
+\par
+نکته 1: FullSimplify از Simplify قوی‌تر است. کارایی هر دو یکی است.
+\par
+نکته 2: گاهی باید برای ساده سازی یک عبارت، ابتدا باید آن Expand شود یا در کسرها از Cancel استفاده شود.
+\par
+سری (مجموعه‌ها)
+\par
+\begin{LTR}
+\begin{lstlisting}
+Sum[Sin[i x], {i, 1, 5}]     Out: Sin[x] + Sin[2 x] + Sin[3 x] + Sin[4 x] + Sin[5 x]
+Sum[i, {i, 1, n}]            Out: 1/2 n (1 + n)
+Sum[i^2, {i, 1, n}]          Out: 1/6 n (1 + n) (1 + 2 n)
+Sum[Sin[i x], {i, 1, 10, 2}] Out: Sin[x] + Sin[3 x] + Sin[5 x] + Sin[7 x] + Sin[9 x]
+\end{lstlisting}
+\end{LTR}
+\par
+روش دیگر: با استفاده از کلید میان ESC + Sum + ESC می‌توان این نماد را رسم کرد.
+\begin{center}
+\includegraphics[width=0.7\textwidth]{Sum.png}
+\end{center}
+\par
+خروجی کدهای تصویر بالا:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Out1: 1/2 n (1 + n)
+Out2: 55
+\end{lstlisting}
+\end{LTR}
+\par
+حاصل ضرب:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Product[Sin[i x], {i, 1, 10}]    Out: Sin[x] Sin[2 x] Sin[3 x] Sin[4 x] Sin[5 x] 
+	Sin[6 x] Sin[7 x] Sin[8 x] Sin[9 x] Sin[10 x]
+
+Product[Sin[i x], {i, 1 , 10, 2}] Out: Sin[x] Sin[3 x] Sin[5 x] Sin[7 x] Sin[9 x]
+\end{lstlisting}
+\end{LTR}
+\par
+روش دیگر: با استفاده از کلید میان ESC + Prod + ESC می‌توان این نماد را رسم کرد.
+\begin{center}
+\includegraphics[width=0.7\textwidth]{Dot.png}
+\end{center}
+\par
+خروجی کد تصویر بالا:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Out: 120
+\end{lstlisting}
+\end{LTR}
+\par
+جلسه چهارم : حد، مشتق و انتگرال
 \end{document}
