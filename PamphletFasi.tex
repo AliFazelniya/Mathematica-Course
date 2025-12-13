@@ -748,4 +748,152 @@ Limit[1/x, x -> 0, Direction -> -1]        Out: Infinity
 \end{lstlisting}
 \end{LTR}
 \par
+بخش دوم - مشتق
+\par
+برای انجام عمل مشتق در برنامه می‌توان به دو صورت زیر اقدام کرد:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Derivative[n][f][x + 1 ]
+D[f[x], {x, n}]
+\end{lstlisting}
+\end{LTR}
+\par
+که خروجی کد بالا به شکل زیر در ترمینال نمایش داده خواهد شد:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{div.png}
+\end{center}
+\par
+نکته: در کد دوم پارامتر (x)f تابع موردنظر براش مشتق گرفتن، پارامتر x متغیری که می‌خواهیم طبق آن مشتق گیری انجام دهیم و پارامتر n تعداد مشتق است.
+\par
+به مثال زیر توجه کنید:
+\par
+\begin{LTR}
+\begin{lstlisting}
+D[(Sin[x])^10, x]                    Out: 10 Cos[x] Sin[x]^9
+\end{lstlisting}
+\end{LTR}
+\par
+در این مثال تابع (x)sin به عنوان تابع ما و x به عنوان پارامتر مشتق‌گیری قرار داده شده است. توجه شود که پارامتر n در این مثال مشخص نشده و به پیش‌فرض 1 در نظر گرفته می‌شود.
+\par
+مشتق جزئی:
+\par
+\begin{LTR}
+\begin{lstlisting}
+D[f[x, y], x, y]
+D[f[x, y], {x, 2}, {y, 3}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی آن در ترمینال به شکل زیر است:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{div1.png}
+\end{center}
+\par
+مثال کاربردی:
+\par
+\begin{LTR}
+\begin{lstlisting}
+D[x^3 + y^2, {x, 2}, {y, 1}]               Out: 0
+\end{lstlisting}
+\end{LTR}
+\par
+بخش سوم - انتگرال گیری
+\par
+\begin{LTR}
+\begin{lstlisting}
+Integrate[f[x], x]
+\end{lstlisting}
+\end{LTR}
+\par
+که خروجی آن در ترمینال به صورت زیر نمایش داده می‌شود:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{int.png}
+\end{center}
+\par
+یک مثال از انتگرال نامعین:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Integrate[Sin[x], x]        Out: -Cos[x]
+\end{lstlisting}
+\end{LTR}
+\par
+انتگرال دوگانه نامعین:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Integrate[f[x, y], x, y]
+\end{lstlisting}
+\end{LTR}
+\par
+که خروجی آن در ترمینال به صورت زیر نمایش داده می‌شود:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{int1.png}
+\end{center}
+\par
+یک مثال از انتگرال دوگانه نامعین:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Integrate[x*y + 1 , x, y]            Out: x y + (x^2 y^2)/4
+\end{lstlisting}
+\end{LTR}
+\par
+انتگرال معین:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Integrate[1/(x^3 + 1), {x, 0, 1}]           Out: 1/18 (2 Sqrt[3] \[Pi] + Log[64])
+\end{lstlisting}
+\end{LTR}
+\par
+نکته: جواب انتگرال گیری‌های معین است.
+\par
+یک مثال از انتگرال دوگانه معین:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Integrate[x*y + 1, {x, 0, t}, {y, -x, x}]          Out: t^2
+\end{lstlisting}
+\end{LTR}
+\par
+انتگرال‌های عددی:
+\par
+\begin{LTR}
+\begin{lstlisting}
+NIntegrate[Sin[Sin[x]], {x, 0, 4}]        Out: 1.45747
+\end{lstlisting}
+\end{LTR}
+\par
+اما چرا از این روش استفاده می‌شود. بیاید از روش قبل انتگرال بالا را حساب کنیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Integrate[Sin[Sin[x]], {x, 0, 4}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی به شکل زیر خواهد بود:
+
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{int2.png}
+\end{center}
+\par
+دلیل آن بر این است که این انتگرال به‌صورت بسته با توابع ابتدایی بیان‌شدنی نیست. همین است که Integrate در Mathematica معمولاً جواب نمادین برنمی‌گرداند.
+\par
+یک مثال دیگر:
+\par
+\begin{LTR}
+\begin{lstlisting}
+a = 2 ;
+NIntegrate[a*Sin[Sin[x]], {x, 0, 4}]                       Out: 2.91494
+\end{lstlisting}
+\end{LTR}
+\par
 \end{document}
