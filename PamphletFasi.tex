@@ -896,4 +896,423 @@ NIntegrate[a*Sin[Sin[x]], {x, 0, 4}]                       Out: 2.91494
 \end{lstlisting}
 \end{LTR}
 \par
+جلسه پنجم: رسم توابع
+\par
+5 - 1 رسم توابع در فضای دو بعد:
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot[x*Sin[1/x], {x, -1/2, 1/2}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot1.png}
+\end{center}
+\par
+رسم سه تابع در یک دستگاه مختصات:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot2.png}
+\end{center}
+\par
+همانطور که مشاهده می‌شود هر سه تابع در یک دستگاه مختصات با رنگ‌های متفاوت رسم می‌شود. برای تغییر رنگ  و استایل توابع، در ادامه دستور قبل کد زیر نوشته می‌شود:
+\par
+\begin{LTR}
+\begin{lstlisting}
+PlotStyle -> { Red, Directive[Dashed, Blue], Yellow}
+\end{lstlisting}
+\end{LTR}
+\par
+کد کامل با استایل اضافه شده:
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, 
+ PlotStyle -> { Red, Directive[Dashed, Blue], Yellow}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot3.png}
+\end{center}
+\par
+نکته 1 : دستور Directive برای اعمال چندین دستور برای یک نمودار استفاده می‌شود.
+\par
+نکته 2 : بعد از plotها نمی‌توانیم از ; استفاده کنیم، زیرا plot یک تابع است و ذخیره سازی آن ممکن نیست و صرفاً برای نمایش استفاده می‌شود.
+\par
+برای راهنما قرار دادن برای نمودار، بعد از تغییر رنگ در همان کروشه از دستور زیر استفاده می‌نماییم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+PlotLegends -> "Expressions"
+\end{lstlisting}
+\end{LTR}
+\par
+*توضیحاتی درباره نمودار نمایش داده خواهد شد.
+\par
+کد کامل با بخش اضافه شده:
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, 
+ PlotStyle -> { Red, Directive[Dashed, Blue], Yellow}, 
+ PlotLegends -> "Expressions"]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot4.png}
+\end{center}
+\par
+برای نمایش ندادن یکی از محور‌ها یا هر دوی آنها (محور‌های x و y) مانند زیر عمل می‌کنیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, 
+ Axes -> {True, False}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot5.png}
+\end{center}
+\par
+نکته: مقدار True به این معنی است که محور نمایش داده شود و مقدار False به این معنی است که محور نمایش داده نشود. همانطور که مشاهده می‌شود در این مثال محور x نمایش داده شده و محور y حذف شده است. اگر مقدار x هم False قرار دهیم، محور x نیز نمایش داده نمی‌شود.
+\par
+برای نام گذاری برای محور‌ها از دستور زیر استفاده می‌کنیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+AxesLabel -> {x, F[x]}
+\end{lstlisting}
+\end{LTR}
+\par
+کد کامل با بخش اضافه شده:
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, 
+ AxesLabel -> {x, F[x]}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot6.png}
+\end{center}
+\par
+نکته: در این مثال، نام محور y به محور (x)F تغییر داده شده.
+\par
+برای جابه‌جایی نمودار از دستور زیر استفاده می‌کنیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+AxesOrigin -> {.5, .5}
+\end{lstlisting}
+\end{LTR}
+\par
+این کد به این معنی است که نمودار 0.5 واحد به سمت چپ و راست و 0.5 واحد به سمت پایین و بالا جابه‌جا شود.
+کد کامل با بخش اضافه شده:
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, 
+ AxesOrigin -> {.5, .5}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot7.png}
+\end{center}
+\par
+اگر نمودار کامل نمایش داده نشود، می‌توانیم از دستور زیر برای نمایش کامل آن استفاده کنیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+PlotRange -> Full
+//or
+PlotRange -> All
+\end{lstlisting}
+\end{LTR}
+\par
+کد کامل با بخش اضافه شده:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, PlotRange -> Full]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot8.png}
+\end{center}
+\par
+و اگر بخواهیم تا حدی مشخص نمایش داده شود، به جای Full و All آن عدد مشخص را تایپ می‌کنیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+PlotRange -> 3
+\end{lstlisting}
+\end{LTR}
+\par
+کد کامل با بخش اضافه شده:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, PlotRange -> 3]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot9.png}
+\end{center}
+\par
+برای استفاده از رنگ رنگین کمانی در نمودار‌های از دستور زیر استفاده می‌کنیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+ColorFunction -> Function[{x, y}, Hue[y]
+\end{lstlisting}
+\end{LTR}
+\par
+نکته: [x] Hue به این معنی است که جهت تغییر رنگ به سمت محور x است. اگر به جای x مقدار y را قرار دهیم. جهت تغییر رنگ‌ها به سمت محور y خواهد بود.
+کد کامل با بخش اضافه شده:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, 
+ ColorFunction -> Function[{x, y}, Hue[x]]]
+
+Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, 
+ ColorFunction -> Function[{x, y}, Hue[y]]]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot10.png}
+\end{center}
+\par
+نکته: اگر از ColorFunction استفاده کنیم، نمی‌توانیم در دستور از Plot Legends نیز استفاده کنیم.
+\par
+5 - 2 رسم رویه‌ها
+\par
+سه بعدی:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot3D[Sin[x + y^2], {x, -3, 3}, {y, -2, 2}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot11.png}
+\end{center}
+\par
+از ColorFinder می‌توانیم در رویه‌های سه بعدی هم استفاده کنیم و بهتر است از (z)Hue در این دستور‌ها استفاده کنیم.
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot3D[Sin[x + y^2], {x, -3, 3}, {y, -2, 2} , 
+ ColorFunction -> Function[{x, y, z}, Hue[z]]]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot12.png}
+\end{center}
+\par
+برای حذف چهارخانه‌های روی رویه از دستور زیر استفاده می‌کنیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Mesh -> None
+\end{lstlisting}
+\end{LTR}
+\par
+کد کامل با بخش اضافه شده:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot3D[Sin[x + y^2], {x, -3, 3}, {y, -2, 2}, Mesh -> None]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot13.png}
+\end{center}
+\par
+اگر به جای none از یک عدد استفاده کنیم، به تعداد آن عدد mesh در سمت x و y کشیده می‌شود:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Plot3D[Sin[x + y^2], {x, -3, 3}, {y, -2, 2}, Mesh -> 4, 
+ MeshStyle -> Blue]
+\end{lstlisting}
+\end{LTR}
+\par
+نکته: Blue در این کد رنگ Mesh هستش.
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot14.png}
+\end{center}
+\par
+5 - 3 رسم توابع پارامتری
+توابع دو بعدی:
+\par
+\begin{LTR}
+\begin{lstlisting}
+h = 1/(s - 1/2)^2 /. s -> Exp[I w]
+ParametricPlot[{Re[h], Im[h]}, {w, 0, 2*Pi}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot15.png}
+\end{center}
+\par
+توابع سه بعدی:
+\par
+\begin{LTR}
+\begin{lstlisting}
+ParametricPlot3D[{Sin[x], Cos[x], x/10}, {x, 0, 20}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot16.png}
+\end{center}
+\par
+5 - 4 رسم توابع با پارامترهای نامعلوم
+\par
+\begin{LTR}
+\begin{lstlisting}
+Manipulate[Plot[a*x^2 + b*x + c, {x, -10, 10}], {a, -10, 10}, {b, -10, 
+  10}, {c, -10, 10}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot17.png}
+\end{center}
+\par
+از Manupulate نیز می‌توان برای فاکتورگیری و چندجمله‌ای ها نیز استفاده کرد:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Manipulate[Factor[n^n + 1], {n, 10, 100, 13}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot18.png}
+\end{center}
+\par
+5 - 5 رسم توابع با استفاده از نقاط
+\par
+\begin{LTR}
+\begin{lstlisting}
+ListPlot[Table[{Sin[x], Sin[2 x]}, {x, 50}]]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot19.png}
+\end{center}
+\par
+5 - 6 رسم منحنی در مختصات‌های مختلف
+مختصات کروی: مثال اول
+\par
+\begin{LTR}
+\begin{lstlisting}
+SphericalPlot3D[{1, 2, 3}, {\[Theta], 0, Pi/2}, {\[CapitalPhi], 0, 
+  3*Pi/2}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot20.png}
+\end{center}
+\par
+مختصات کروی: مثال دوم
+\par
+\begin{LTR}
+\begin{lstlisting}
+PolarPlot[Sin[3*t], {t, 0, Pi}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot21.png}
+\end{center}
+\par
+5 - 7 رسم محدوده جواب نامعدلات جبری
+\par
+\begin{LTR}
+\begin{lstlisting}
+ContourPlot[Cos[x] + Cos[y] == 1/2, {x, 0, 4*Pi}, {y, 0, 4*Pi}]
+ContourPlot[{Abs[Sin[x]* Sin[y]] == .5 , 
+  Abs[Cos[x]*Cos[y]] == .5}, {x, -3, 3}, {y, -3, 3}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{plot22.png}
+\end{center}
+\par
+جلسه ششم: حل معادلات
 \end{document}
