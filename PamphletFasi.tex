@@ -25,9 +25,8 @@
 \begin{document}
 \AddToShipoutPictureBG{%
   \begin{tikzpicture}[remember picture,overlay]
-    % ضخامت خط کادر را تنظیم کن
+
     \draw[line width=1pt]
-      % فاصله کادر از لبه برگ (قابل تغییر)
       ($(current page.north west) + (1.2cm,-1.2cm)$)
         rectangle
       ($(current page.south east) + (-1.2cm,1.2cm)$);
@@ -36,7 +35,6 @@
 
 دوره آموزشی برنامه متمتیکا
 \par
-دوره سایت فرادرس
 \par
 جلسه اول
 \par
@@ -663,7 +661,7 @@ Sum[Sin[i x], {i, 1, 10, 2}] Out: Sin[x] + Sin[3 x] + Sin[5 x] + Sin[7 x] + Sin[
 \par
 روش دیگر: با استفاده از کلید میان ESC + Sum + ESC می‌توان این نماد را رسم کرد.
 \begin{center}
-\includegraphics[width=1\textwidth]{Sum.png}
+\includegraphics[width=1\textwidth]{pics/Part 3/Sum.png}
 \end{center}
 \par
 خروجی کدهای تصویر بالا:
@@ -688,7 +686,7 @@ Product[Sin[i x], {i, 1 , 10, 2}] Out: Sin[x] Sin[3 x] Sin[5 x] Sin[7 x] Sin[9 x
 \par
 روش دیگر: با استفاده از کلید میان ESC + Prod + ESC می‌توان این نماد را رسم کرد.
 \begin{center}
-\includegraphics[width=1\textwidth]{Dot.png}
+\includegraphics[width=1\textwidth]{pics/Part 3/Dot.png}
 \end{center}
 \par
 خروجی کد تصویر بالا:
@@ -712,7 +710,7 @@ Limit[f[x], x -> x0] // TraditionalForm
 \par
 خروجی کد بالا به شکل زیر می‌باشد:
 \begin{center}
-\includegraphics[width=1\textwidth]{limit1.png}
+\includegraphics[width=1\textwidth]{pics/Part 4/limit1.png}
 \end{center}
 \par
 مثالی دیگر:
@@ -763,7 +761,7 @@ D[f[x], {x, n}]
 که خروجی کد بالا به شکل زیر در ترمینال نمایش داده خواهد شد:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{div.png}
+\includegraphics[width=1\textwidth]{pics/Part 4/div.png}
 \end{center}
 \par
 نکته: در کد دوم پارامتر (x)f تابع موردنظر براش مشتق گرفتن، پارامتر x متغیری که می‌خواهیم طبق آن مشتق گیری انجام دهیم و پارامتر n تعداد مشتق است.
@@ -790,7 +788,7 @@ D[f[x, y], {x, 2}, {y, 3}]
 خروجی آن در ترمینال به شکل زیر است:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{div1.png}
+\includegraphics[width=1\textwidth]{pics/Part 4/div1.png}
 \end{center}
 \par
 مثال کاربردی:
@@ -812,7 +810,7 @@ Integrate[f[x], x]
 که خروجی آن در ترمینال به صورت زیر نمایش داده می‌شود:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{int.png}
+\includegraphics[width=1\textwidth]{pics/Part 4/int.png}
 \end{center}
 \par
 یک مثال از انتگرال نامعین:
@@ -834,7 +832,7 @@ Integrate[f[x, y], x, y]
 که خروجی آن در ترمینال به صورت زیر نمایش داده می‌شود:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{int1.png}
+\includegraphics[width=1\textwidth]{pics/Part 4/int1.png}
 \end{center}
 \par
 یک مثال از انتگرال دوگانه نامعین:
@@ -883,7 +881,7 @@ Integrate[Sin[Sin[x]], {x, 0, 4}]
 
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{int2.png}
+\includegraphics[width=1\textwidth]{pics/Part 4/int2.png}
 \end{center}
 \par
 دلیل آن بر این است که این انتگرال به‌صورت بسته با توابع ابتدایی بیان‌شدنی نیست. همین است که Integrate در Mathematica معمولاً جواب نمادین برنمی‌گرداند.
@@ -911,7 +909,7 @@ Plot[x*Sin[1/x], {x, -1/2, 1/2}]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot1.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot1.png}
 \end{center}
 \par
 رسم سه تابع در یک دستگاه مختصات:
@@ -925,7 +923,7 @@ Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot2.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot2.png}
 \end{center}
 \par
 همانطور که مشاهده می‌شود هر سه تابع در یک دستگاه مختصات با رنگ‌های متفاوت رسم می‌شود. برای تغییر رنگ  و استایل توابع، در ادامه دستور قبل کد زیر نوشته می‌شود:
@@ -949,7 +947,7 @@ Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2},
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot3.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot3.png}
 \end{center}
 \par
 نکته 1 : دستور Directive برای اعمال چندین دستور برای یک نمودار استفاده می‌شود.
@@ -980,7 +978,7 @@ Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2},
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot4.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot4.png}
 \end{center}
 \par
 برای نمایش ندادن یکی از محور‌ها یا هر دوی آنها (محور‌های x و y) مانند زیر عمل می‌کنیم:
@@ -995,7 +993,7 @@ Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2},
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot5.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot5.png}
 \end{center}
 \par
 نکته: مقدار True به این معنی است که محور نمایش داده شود و مقدار False به این معنی است که محور نمایش داده نشود. همانطور که مشاهده می‌شود در این مثال محور x نمایش داده شده و محور y حذف شده است. اگر مقدار x هم False قرار دهیم، محور x نیز نمایش داده نمی‌شود.
@@ -1021,7 +1019,7 @@ Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2},
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot6.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot6.png}
 \end{center}
 \par
 نکته: در این مثال، نام محور y به محور (x)F تغییر داده شده.
@@ -1048,7 +1046,7 @@ Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2},
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot7.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot7.png}
 \end{center}
 \par
 اگر نمودار کامل نمایش داده نشود، می‌توانیم از دستور زیر برای نمایش کامل آن استفاده کنیم:
@@ -1072,7 +1070,7 @@ Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, PlotRange -> Full]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot8.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot8.png}
 \end{center}
 \par
 و اگر بخواهیم تا حدی مشخص نمایش داده شود، به جای Full و All آن عدد مشخص را تایپ می‌کنیم:
@@ -1094,7 +1092,7 @@ Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2}, PlotRange -> 3]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot9.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot9.png}
 \end{center}
 \par
 برای استفاده از رنگ رنگین کمانی در نمودار‌های از دستور زیر استفاده می‌کنیم:
@@ -1121,7 +1119,7 @@ Plot[{x*Sin[1/x], Abs[x], -Abs[x]}, {x, -1/2, 1/2},
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot10.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot10.png}
 \end{center}
 \par
 نکته: اگر از ColorFunction استفاده کنیم، نمی‌توانیم در دستور از Plot Legends نیز استفاده کنیم.
@@ -1139,7 +1137,7 @@ Plot3D[Sin[x + y^2], {x, -3, 3}, {y, -2, 2}]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot11.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot11.png}
 \end{center}
 \par
 از ColorFinder می‌توانیم در رویه‌های سه بعدی هم استفاده کنیم و بهتر است از (z)Hue در این دستور‌ها استفاده کنیم.
@@ -1154,7 +1152,7 @@ Plot3D[Sin[x + y^2], {x, -3, 3}, {y, -2, 2} ,
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot12.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot12.png}
 \end{center}
 \par
 برای حذف چهارخانه‌های روی رویه از دستور زیر استفاده می‌کنیم:
@@ -1176,7 +1174,7 @@ Plot3D[Sin[x + y^2], {x, -3, 3}, {y, -2, 2}, Mesh -> None]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot13.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot13.png}
 \end{center}
 \par
 اگر به جای none از یک عدد استفاده کنیم، به تعداد آن عدد mesh در سمت x و y کشیده می‌شود:
@@ -1193,7 +1191,7 @@ Plot3D[Sin[x + y^2], {x, -3, 3}, {y, -2, 2}, Mesh -> 4,
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot14.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot14.png}
 \end{center}
 \par
 5 - 3 رسم توابع پارامتری
@@ -1209,7 +1207,7 @@ ParametricPlot[{Re[h], Im[h]}, {w, 0, 2*Pi}]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot15.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot15.png}
 \end{center}
 \par
 توابع سه بعدی:
@@ -1223,7 +1221,7 @@ ParametricPlot3D[{Sin[x], Cos[x], x/10}, {x, 0, 20}]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot16.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot16.png}
 \end{center}
 \par
 5 - 4 رسم توابع با پارامترهای نامعلوم
@@ -1238,7 +1236,7 @@ Manipulate[Plot[a*x^2 + b*x + c, {x, -10, 10}], {a, -10, 10}, {b, -10,
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot17.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot17.png}
 \end{center}
 \par
 از Manupulate نیز می‌توان برای فاکتورگیری و چندجمله‌ای ها نیز استفاده کرد:
@@ -1252,7 +1250,7 @@ Manipulate[Factor[n^n + 1], {n, 10, 100, 13}]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot18.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot18.png}
 \end{center}
 \par
 5 - 5 رسم توابع با استفاده از نقاط
@@ -1266,7 +1264,7 @@ ListPlot[Table[{Sin[x], Sin[2 x]}, {x, 50}]]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot19.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot19.png}
 \end{center}
 \par
 5 - 6 رسم منحنی در مختصات‌های مختلف
@@ -1282,7 +1280,7 @@ SphericalPlot3D[{1, 2, 3}, {\[Theta], 0, Pi/2}, {\[CapitalPhi], 0,
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot20.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot20.png}
 \end{center}
 \par
 مختصات کروی: مثال دوم
@@ -1296,7 +1294,7 @@ PolarPlot[Sin[3*t], {t, 0, Pi}]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot21.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot21.png}
 \end{center}
 \par
 5 - 7 رسم محدوده جواب نامعدلات جبری
@@ -1312,7 +1310,7 @@ ContourPlot[{Abs[Sin[x]* Sin[y]] == .5 ,
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{plot22.png}
+\includegraphics[width=1\textwidth]{pics/Part 5/plot22.png}
 \end{center}
 \par
 جلسه ششم: حل معادلات
@@ -1455,7 +1453,7 @@ ContourPlot[x^2 + y^2 == 1, {x, -2, 2}, {y, -2, 2}]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{Circle.png}
+\includegraphics[width=1\textwidth]{pics/Part 6/Circle.png}
 \end{center}
 \par
 6 - 3 معادلات دیفرانسیل معمولی و جزئی
@@ -1499,7 +1497,7 @@ Plot[Evaluate[y[x] /. s], {x, 0, 30}, PlotRange -> All]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{NDSolve.png}
+\includegraphics[width=1\textwidth]{pics/Part 6/NDSolve.png}
 \end{center}
 \par
 حل معادلات پارشال:
@@ -1514,7 +1512,7 @@ DSolve[eq, \[Psi][x, t], {x, t}]
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{Psi.png}
+\includegraphics[width=1\textwidth]{pics/Part 6/Psi.png}
 \end{center}
 \par
 جلسه هفتم: بردار و ماتریس
@@ -1546,7 +1544,7 @@ y = {{1, 2}, {3, 4}} // MatrixForm
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{Matrix1.png}
+\includegraphics[width=1\textwidth]{pics/Part 7/Matrix1.png}
 \end{center}
 \par
 روش ساخت یک بردار و ماتریش با دستور Table :
@@ -1579,7 +1577,7 @@ Table[j^3, {i, 5}, {j, 5}] // MatrixForm
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{Matrix2.png}
+\includegraphics[width=1\textwidth]{pics/Part 7/Matrix2.png}
 \end{center}
 \par
 * نجوه و ترتیب قرارگیری i و j در Table بسیار مهم است.
@@ -1700,7 +1698,7 @@ IdentityMatrix[3] // MatrixForm
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{Matrix3.png}
+\includegraphics[width=1\textwidth]{pics/Part 7/Matrix3.png}
 \end{center}
 \par
 ماتریس قطری (همانی نباشد) :
@@ -1715,7 +1713,7 @@ DiagonalMatrix[{1, 2, 3}] // MatrixForm
 خروجی:
 \par
 \begin{center}
-\includegraphics[width=1\textwidth]{Matrix4.png}
+\includegraphics[width=1\textwidth]{pics/Part 7/Matrix4.png}
 \end{center}
 \par
 7 - 4 حل دستگاه خطی همگن و ناهمگن
