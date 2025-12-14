@@ -1517,4 +1517,224 @@ DSolve[eq, \[Psi][x, t], {x, t}]
 \includegraphics[width=1\textwidth]{Psi.png}
 \end{center}
 \par
+جلسه هفتم: بردار و ماتریس
+\par
+نحوه ساخت یک وکتور (بردار) در متمتیکا:
+\par
+\begin{LTR}
+\begin{lstlisting}
+v = {1, 2, 3}         Out: {1, 2, 3}
+\end{lstlisting}
+\end{LTR}
+\par
+نحوه ساخت یک ماتریس:
+\par
+\begin{LTR}
+\begin{lstlisting}
+y = {{1, 2}, {3, 4}}    Out: {{1, 2}, {3, 4}}      // 2×2 matrix
+\end{lstlisting}
+\end{LTR}
+\par
+اگر بخواهیم به شکل ماتریس نمایش داده شود:
+\par
+\begin{LTR}
+\begin{lstlisting}
+y = {{1, 2}, {3, 4}} // MatrixForm
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{Matrix1.png}
+\end{center}
+\par
+روش ساخت یک بردار و ماتریش با دستور Table :
+\par
+\begin{LTR}
+\begin{lstlisting}
+Table[i^2, {i, 5}]    Out: {1, 4, 9, 16, 25}
+\end{lstlisting}
+\end{LTR}
+\par
+اگر ماتریش شما از قانون خاصی پیروی نمی‌کند( یک ماتریس خاص است) باید خود ماتریس در []Table نوشت.
+\par
+مثالی دیگر:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Table[i^2, {i, 5, 10}]            Out: {25, 36, 49, 64, 81, 100}
+Table[i^2, {i, 5, 10, 2}]      Out: {25, 49, 81}
+\end{lstlisting}
+\end{LTR}
+\par
+\par
+\begin{LTR}
+\begin{lstlisting}
+Table[i^2, {i, 5}, {j, 5}] // MatrixForm
+Table[j^3, {i, 5}, {j, 5}] // MatrixForm
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{Matrix2.png}
+\end{center}
+\par
+* نجوه و ترتیب قرارگیری i و j در Table بسیار مهم است.
+\par
+7 - 1 اعمال اصلی و گرفتن درایه از ماتریس
+\par
+\begin{LTR}
+\begin{lstlisting}
+M = Table[j^2, {i, 5}, {j, 5}] // MatrixForm
+M + M // MatrixForm;               // Summation
+M . M // MatrixForm;               // Multipication
+\end{lstlisting}
+\end{LTR}
+\par
+در مثال زیر درایه واقع در سطر و ستون اول ماتریس M را مقدار 6 قرار می‌دهیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+M[[1, 1]] = 6
+M[[1, 1]]               Out: 6
+\end{lstlisting}
+\end{LTR}
+\par
+7 - 2 ضرب داخلی و خارجی و محاسبه نورم اول بردار
+\par
+ضرب داخلی (یک عدد است):
+\par
+\begin{LTR}
+\begin{lstlisting}
+v = {1, 2, 3}             
+v . v            Out: 14
+Dot[v, v]     Out: 14
+\end{lstlisting}
+\end{LTR}
+\par
+ضرب خارجی (یک بردار است) : 
+\par
+\begin{LTR}
+\begin{lstlisting}
+Cross[v, v]       Out: {0, 0, 0}
+v * v         Out: {0, 0, 0}
+\end{lstlisting}
+\end{LTR}
+\par
+بدست آوردن اندازه نورم اول بردار:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Norm[v]       Out: Sqrt[14]
+\end{lstlisting}
+\end{LTR}
+\par
+7 - 3 محاسبه دترمینان، جمغ درایه‌های قطر اصلی (تریس ماتریس)، معکوس ماتریس، تولید ماتریس‌های خاص
+محاسبه دترمینان ماتریس - مثال 1 :
+\par
+\begin{LTR}
+\begin{lstlisting}
+M = Table[j^2, {i, 5}, {j, 5}] ;
+Det[M]    Out: 0        
+\end{lstlisting}
+\end{LTR}
+\par
+محاسبه دترمینان ماتریس - مثال 2 :
+\par
+\begin{LTR}
+\begin{lstlisting}
+m = {{1, 2}, {3, 4}}
+Det[m]         Out: -2
+\end{lstlisting}
+\end{LTR}
+\par
+محاسبه تریس ماتریس:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Tr[m]       Out: 5
+\end{lstlisting}
+\end{LTR}
+\par
+معکوس ماتریس - مثال 1 :
+\par
+\begin{LTR}
+\begin{lstlisting}
+Inverse[m]       Out: {{-2, 1}, {3/2, -(1/2)}}
+\end{lstlisting}
+\end{LTR}
+\par
+معکوس ماتریس - مثال 2 ‌:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Inverse[{{1, 2}, {1, 2}}]      Out: Inverse::sing: Matrix {{1,2},{1,2}} is singular.
+\end{lstlisting}
+\end{LTR}
+\par
+* در این مثال چون ماتریس singular هست، برنامه ارور می‌دهد. این ماتریس معکوس نیست زیرا که دترمینان آن مساوی با صفر است.
+\par
+محاسبه رنک یک ماتریس:
+\par
+\begin{LTR}
+\begin{lstlisting}
+MatrixRank[{{1, 2}, {1, 2}}]      Out: 1
+\end{lstlisting}
+\end{LTR}
+\par
+* اگر رنک یک ماتریکس n باشد کامل است و معکوس‌پذیر و در غیر این صورت معکوس‌ناپذیر است.
+\par
+تشکیل ماتریس‌های خاص
+\par
+ماتریس همانی
+\par
+\begin{LTR}
+\begin{lstlisting}
+IdentityMatrix[3] // MatrixForm
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{Matrix3.png}
+\end{center}
+\par
+ماتریس قطری (همانی نباشد) :
+
+\par
+\begin{LTR}
+\begin{lstlisting}
+DiagonalMatrix[{1, 2, 3}] // MatrixForm
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{Matrix4.png}
+\end{center}
+\par
+7 - 4 حل دستگاه خطی همگن و ناهمگن
+\par
+\begin{LTR}
+\begin{lstlisting}
+LinearSolve[{{1, 1}, {1, -1}}, {0, 0}]          Out: {0, 0}
+LinearSolve[{{1, 1}, {1, -1}}, {1, 0}]          Out: {1/2, 1/2}
+\end{lstlisting}
+\end{LTR}
+\par
+مقادیر و بردار‌های ویژه یک ماتریس:
+\par
+\begin{LTR}
+\begin{lstlisting}
+M = {{1, 2}, {3, 4}};
+Eigenvalues[M]         Out: {1/2 (5 + Sqrt[33]), 1/2 (5 - Sqrt[33])}
+Eigenvectors[M]          Out: {{1/6 (-3 + Sqrt[33]), 1}, {1/6 (-3 - Sqrt[33]), 1}}
+\end{lstlisting}
+\end{LTR}
+\par
 \end{document}
