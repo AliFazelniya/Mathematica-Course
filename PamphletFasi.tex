@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usepackage[a4paper, margin=2.5cm]{geometry}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \lstset{
   basicstyle=\ttfamily\small,
   keywordstyle=\color{blue},
@@ -1315,4 +1316,205 @@ ContourPlot[{Abs[Sin[x]* Sin[y]] == .5 ,
 \end{center}
 \par
 جلسه ششم: حل معادلات
+6 - 1 حل معادلات جبری
+\par
+مثال 1 :
+\par
+\begin{LTR}
+\begin{lstlisting}
+Solve[a*x^2 + b*x + c == 0, x]         Out: {{x -> (-b - Sqrt[b^2 - 4 a c])/(2 a)}, {x -> (-b + Sqrt[b^2 - 4 a c])/(2 a)}}
+\end{lstlisting}
+\end{LTR}
+\par
+* ریشه‌های معادله درجه دو را بدست می‌آورد.
+\par
+مثال 2 : 
+\par
+\begin{LTR}
+\begin{lstlisting}
+Solve[x^2 + y^2 == 2 && x - y == 1 , {x, y}]         
+Out: {{x -> 1/2 (1 - Sqrt[3]), 
+  y -> 1/2 (-1 - Sqrt[3])}, {x -> 1/2 (1 + Sqrt[3]), 
+  y -> 1/2 (-1 + Sqrt[3])}}
+\end{lstlisting}
+\end{LTR}
+\par
+* این معادله دو نقطه و دو جواب دارد که آن نقطه تقاطع این دو معادله است.
+\par
+برای اینکه جواب‌ها را جداگانه بدهد:
+\par
+\begin{LTR}
+\begin{lstlisting}
+sol = Solve[x^2 + y^2 == 2 && x - y == 1 , {x, y}] 
+x /. sol            Out: {1/2 (1 - Sqrt[3]), 1/2 (1 + Sqrt[3])} 
+\end{lstlisting}
+\end{LTR}
+\par
+* x های جواب معدله را نشان می‌دهد.
+\par
+مثال 3 : 
+\par
+\begin{LTR}
+\begin{lstlisting}
+Solve[x == 1 && x == 2, x]          Out: {}
+\end{lstlisting}
+\end{LTR}
+\par
+* این دسته معادله‌ها جواب ندارند. علامت {} یعنی دستگاه جوابی ندارد.
+\par
+مثال 4 :
+\par
+\begin{LTR}
+\begin{lstlisting}
+Solve[x == x, x]         Out: {{}}
+\end{lstlisting}
+\end{LTR}
+\par
+* در این مثال مجمع حواب بی‌نهایت است. علامت {{}} یعنی دستگاه بی‌نهایت جواب دارد.
+\par
+مثال 5 : 
+\par
+\begin{LTR}
+\begin{lstlisting}
+Solve[(x^4 - 1)*(x - 4) == 0, x, Reals]         Out: {{x -> -1}, {x -> 1}, {x -> 4}}
+\end{lstlisting}
+\end{LTR}
+\par
+* ریشه‌های که فقط Real هستند در خروجی نمایش داده خواهد شد.
+\par
+اگر یک معادله با دستور Solve حل نشود، ممکن است با استفاده از دستور NSolve حل بشود.
+\par
+\begin{LTR}
+\begin{lstlisting}
+NSolve[(x - 1)*(x^4 - 4) == 0, Reals]        Out: {{x -> -1.41421}, {x -> 1.}, {x -> 1.41421}}
+\end{lstlisting}
+\end{LTR}
+\par
+6 - 2 یافتن ریشه معادلات غیرخطی به روش نیوتون و سکانت
+\par
+روش نیوتون (یک نقطه ورودی دارد)
+\par
+\begin{LTR}
+\begin{lstlisting}
+FindRoot[Sin[x] + Exp[x], {x, 0}]       Out: {x -> -0.588533}
+\end{lstlisting}
+\end{LTR}
+\par
+روش سکانت (دو نقطه ورودی دارد)
+\par
+\begin{LTR}
+\begin{lstlisting}
+FindRoot[Sin[x] + Exp[x], {x, 0, 1}]       Out: {x -> -0.588533}
+\end{lstlisting}
+\end{LTR}
+\par
+اگر بخواهیم از یک نقطه شروع کنیم و در یک بازه خاص دنبا جواب بگردد از روش زیر استفاده می‌کنیم (روش نیوتون) :
+\par
+\begin{LTR}
+\begin{lstlisting}
+FindRoot[Sin[x] + Exp[x], {x, 0, -1, 1}]      Out: {x -> -0.588533}
+\end{lstlisting}
+\end{LTR}
+\par
+* در این مثال، پارامتر دوم که در اینجا 0 قرار داده شده نقطه شروع ، دو پارامتر بعدی بازه را مشخص می‌کند. در اینجا بازه -1 تا 1.
+\par
+برای بالا بردن دقت محاسبات می‌توانیم از WorkingPrecision استفاده کنیم. به مثال زیر دقت کنید:
+\par
+\begin{LTR}
+\begin{lstlisting}
+FindRoot[x^2 - 2, {x, 1}]          Out: {x -> 1.41421}
+FindRoot[x^2 - x, {x, 1}, WorkingPrecision -> 60]   Out: {x -> 1.00000000000000000000000000000000000000000000000000000000000}
+\end{lstlisting}
+\end{LTR}
+\par
+اگر بخواهیم دقت بسیار بسیار زیاد شود:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Needs["FunctionApproximations`"]
+InterpolateRoot[Exp[x] == 2 , {x, 0, 1}]   Out: {x -> 0.693147180559945309417232}
+\end{lstlisting}
+\end{LTR}
+\par
+حل نامعادله:
+\par
+\begin{LTR}
+\begin{lstlisting}
+Reduce[x^2 + y^2 < 1, {x, y}]  Out: -1 < x < 1 && -Sqrt[1 - x^2] < y < Sqrt[1 - x^2]
+\end{lstlisting}
+\end{LTR}
+\par
+رسم دایره:
+\par
+\begin{LTR}
+\begin{lstlisting}
+ContourPlot[x^2 + y^2 == 1, {x, -2, 2}, {y, -2, 2}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{Circle.png}
+\end{center}
+\par
+6 - 3 معادلات دیفرانسیل معمولی و جزئی
+\[
+\left.
+\begin{array}{l}
+\text{روش تحلیلی (دقیق)} \\
+\text{روش عددی (تقریبی)}
+\end{array}
+\right\}
+\text{ حل معادله دیفرانسیل}
+\]
+\par
+معادلاتی که می‌توان به روش تحلیلی حل کرد:
+\par
+\begin{LTR}
+\begin{lstlisting}
+DSolve[{y'[x] + y[x] == a Sin[x ]}, y, x]   Out: {{y -> Function[{x}, E^-x C[1] + 1/2 a (-Cos[x] + Sin[x])]}}
+\end{lstlisting}
+\end{LTR}
+\par
+اگر بخواهیم مقدار [1]C محاسبه شود، کد را اینگونه می‌نویسیم:
+\par
+\begin{LTR}
+\begin{lstlisting}
+DSolve[{y'[x] + y[x] == a Sin[x ], y[0] == 0}, y, x]  Out: {{y -> Function[{x}, -(1/2) a E^-x (-1 + E^x Cos[x] - E^x Sin[x])]}}
+\end{lstlisting}
+\end{LTR}
+\par
+* عبارت y[0] == 0 در کد بالا شرط اولیه است.
+\par
+معادلاتی که می‌توان به روش عددی (تقریبی) حل کرد:
+\par
+\begin{LTR}
+\begin{lstlisting}
+s = NDSolve[{y'[x] == y[x]*Cos[x + y[x]], y[0] == 1}, y, {x, 0, 30}]
+Plot[Evaluate[y[x] /. s], {x, 0, 30}, PlotRange -> All]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{NDSolve.png}
+\end{center}
+\par
+حل معادلات پارشال:
+\par
+\begin{LTR}
+\begin{lstlisting}
+eq = D[\[Psi][x, t], {x, 2}] == -1/\[Alpha]^2 D[\[Psi][x, t], {t, 2}]
+DSolve[eq, \[Psi][x, t], {x, t}]
+\end{lstlisting}
+\end{LTR}
+\par
+خروجی:
+\par
+\begin{center}
+\includegraphics[width=1\textwidth]{Psi.png}
+\end{center}
+\par
 \end{document}
